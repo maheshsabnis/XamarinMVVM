@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MVVM_XamarinApp.Views.AddProductPage"
+             xmlns:local="clr-namespace:MVVM_XamarinApp.ViewModels">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ProductViewModel x:Key="viewmodel"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout BindingContext="{Binding Source={StaticResource viewmodel}}">
+            <Label Text="Add Product" WidthRequest="60" TextColor="Yellow"  BackgroundColor="Red"/>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Product Row Id"></Label>
+                <Entry Placeholder="Enter Product Row Id" Text="{Binding Path=Product.ProductRowId}" IsReadOnly="True"></Entry>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Product Id"></Label>
+                <Entry Placeholder="Enter Product Id" Text="{Binding Path=Product.ProductId}"></Entry>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Product Name"></Label>
+                <Entry Placeholder="Enter Product Name" Text="{Binding Path=Product.ProductName}"></Entry>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Category Name"></Label>
+                <Entry Placeholder="Enter Category Name" Text="{Binding Path=Product.CategoryName}"></Entry>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Manufacturer"></Label>
+                <Entry Placeholder="Enter Manufacturer" Text="{Binding Path=Product.Manufacturer}"></Entry>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Description"></Label>
+                <Editor Placeholder="Enter Description" Text="{Binding Path=Product.Description}"></Editor>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Base Price"></Label>
+                <Entry Placeholder="Enter Base Price" Text="{Binding Path=Product.BasePrice}"></Entry>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Add Product" Command="{Binding AddProductCommand}"
+                        ></Button>
+            </StackLayout>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

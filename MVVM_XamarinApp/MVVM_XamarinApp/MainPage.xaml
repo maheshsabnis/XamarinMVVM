@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MVVM_XamarinApp.MainPage"
+             xmlns:viewmodel="clr-namespace:MVVM_XamarinApp.ViewModels">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <viewmodel:ProductViewModel x:Key="prductViewModel"></viewmodel:ProductViewModel>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout BindingContext="{Binding Source={StaticResource prductViewModel}}">
+        <Label Text="The List of Products"></Label>
+
+        <Button x:Name="btnGet" Text="Get Data" 
+                Command="{Binding Path=GetCommand}" ></Button>
+        
+        <ListView x:Name="listViewProduct" 
+                  ItemsSource="{Binding Products}"
+                  >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Path=ProductRowId}"></Label>
+                            <Label Text="{Binding Path=ProductId}"></Label>
+                            <Label Text="{Binding Path=ProductName}"></Label>
+                            <Label Text="{Binding Path=CategoryName}"></Label>
+                            <Label Text="{Binding Path=Manufacturer}"></Label>
+                            <Label Text="{Binding Path=Description}"></Label>
+                            <Label Text="{Binding Path=BasePrice}"></Label>
+                            <Button Text="Update" BackgroundColor="Red" Clicked="Button_Clicked"></Button>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
+        </ListView>
+        <Button x:Name="btnNavigate" Text="Navigate" IsEnabled="{Binding IsAddEnabled}" Command="{Binding NavigationCommand}"></Button>
+    </StackLayout>
+
+</ContentPage>
